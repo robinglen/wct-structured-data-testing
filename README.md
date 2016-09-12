@@ -6,7 +6,7 @@ A small extension to use with [web-component-tester](https://github.com/Polymer/
 
 ## Install
 
-`npm install wct-structured-data-proxy --save-dev`
+`npm install wct-structured-data-testing --save-dev`
 
 ## Example usage with WTC
 
