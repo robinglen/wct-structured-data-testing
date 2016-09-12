@@ -1,0 +1,41 @@
+{
+  "name": "wct-structured-data-testing",
+  "version": "1.0.0",
+  "description": "Helper for testing structured data tool with web component tests",
+  "main": "index.js",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "express": "~4.13.4",
+    "istanbul": "~0.4.2",
+    "jshint": "~2.9.1",
+    "mocha": "^2.3.4",
+    "sinon": "~1.17.3",
+    "supertest": "~1.2.0"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.0",
+    "request": "~2.69.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/istanbul cover _mocha -- -R spec",
+    "coverage": "node_modules/.bin/istanbul check-coverage --statement 100 --branches 100 --function 100 --lines 100",
+    "lint": "node_modules/.bin/jshint test/*.js index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thearegee/wct-structured-data-testing.git"
+  },
+  "keywords": [
+    "polymer",
+    "web",
+    "components",
+    "testing",
+    "schema.org"
+  ],
+  "author": "Robin Glen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thearegee/wct-structured-data-testing/issues"
+  },
+  "homepage": "https://github.com/thearegee/wct-structured-data-testing#readme"
+}
