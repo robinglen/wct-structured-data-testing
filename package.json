@@ -1,6 +1,6 @@
 {
   "name": "wct-structured-data-testing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helper for testing structured data tool with web component tests",
   "main": "index.js",
   "devDependencies": {
