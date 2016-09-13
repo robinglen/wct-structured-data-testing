@@ -4,6 +4,8 @@
 
 A small extension to use with [web-component-tester](https://github.com/Polymer/web-component-tester) as a `wct.hook` that allows you to test your components markup with Google's [Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/).
 
+Currently doesn't work with versions of WCT newer than: 4.3.1.
+
 ## Install
 
 `npm install wct-structured-data-testing --save-dev`
@@ -41,35 +43,37 @@ Here is an example:
   <my-element></my-element>
 
   <script>
-    var elHTML;
+
 
     suite('<nap-seed-element> structured data', function() {
-      var responseObj;
 
-      setup(function(done){
-        elHTML = document.querySelector('my-element').outerHTML;
-        getStructuredData(elHTML, function(response){
-          responseObj = response;
-          done();
-        });
+      var structuredDataResponse;
+
+      suiteSetup((done) => {
+          var elementHTML = fixture('my-element-fixture').outerHTML;
+          getStructuredData(elementHTML, function(response){
+            structuredDataResponse = response;
+            done();
+          });
       });
 
       /* Simple test for checking there are no structured data errors */
       test('No errors in the structured data', function() {
-        assert.equal(responseObj.errors, 0);
+        assert.equal(structuredDataResponse.errors, 0);
       });
 
     });
 
     /**
-    * Helper function to make this call to proxied structured data
+    * Helper function to pass HTML to proxy API for google structured data tool
+      <https://developers.google.com/structured-data/testing-tool/>
     */
-    function getStructuredData(eleHtml, callback) {
+    function getStructuredData(elementHTML, callback) {
       var request = new XMLHttpRequest();
       request.open('POST', '/_structured_data_proxy_');
       request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
-      request.onload = function()) {
+      request.onload = function(e) {
         if (request.status == 200) {
           var json = JSON.parse(request.response);
           callback(json);
@@ -77,7 +81,7 @@ Here is an example:
           callback();
         }
       }
-      request.send(JSON.stringify({ html: eleHtml }));
+      request.send(JSON.stringify({ html: elementHTML }));
     }
 
 ```
@@ -112,4 +116,5 @@ structuredDataProxy.getStructuredDataResults(myHTML, function(response){
 
 # Notes
 
+* Need to investigate why this isn't working on the newer versions of wct
 * This will stop working when Google say, "what is going on here..." *block
