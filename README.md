@@ -115,6 +115,6 @@ structuredDataProxy.getStructuredDataResults(myHTML, function(response){
 ```
 
 # Notes
-
+* This only works via command line test script script: wct --plugin local it will NOT work via polyserve localhost:8080/components/my-element/test/
 * Need to investigate why this isn't working on the newer versions of wct
 * This will stop working when Google say, "what is going on here..." *block
